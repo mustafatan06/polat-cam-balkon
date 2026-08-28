@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polat Cam Balkon & Yapı Sistemleri</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- CAM BALKON AÇILIŞ ANİMASYONU --- */
+        #balcony-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            z-index: 99999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .intro-content {
+            position: absolute;
+            text-align: center;
+            color: white;
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            width: 90%;
+            max-width: 450px;
+        }
+
+        .intro-content h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .intro-content p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+
+        #openBalconyBtn {
+            background-color: #f39c12;
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        #openBalconyBtn:hover {
+            background-color: #e67e22;
+        }
+
+        .glass-panels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            pointer-events: none;
+        }
+
+        .glass-panel {
+            flex: 1;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(6px);
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            writing-mode: vertical-rl;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            transform: translateX(0);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        /* Kayma Sınıfları (Butona basılınca tetiklenir) */
+        .slide-out .panel-1 { transform: translateX(-100%); }
+        .slide-out .panel-2 { transform: translateX(-100%); transition-delay: 0.1s; }
+        .slide-out .panel-3 { transform: translateX(-100%); transition-delay: 0.2s; }
+        .slide-out .panel-4 { transform: translateX(-100%); transition-delay: 0.3s; }
+
+        /* --- HEADER --- */
+        .header {
+            background: #111;
+            color: #fff;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 20px;
+        }
+
+        .logo span {
+            color: #f39c12;
+        }
+
+        .btn-call {
+            background: #f39c12;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            padding: 60px 15px;
+            text-align: center;
+        }
+
+        .hero-text h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+
+        .btn.primary { background-color: #27ae60; }
+        .btn.whatsapp { background-color: #25d366; }
+
+        /* --- HİZMETLERİMİZ --- */
+        .services { padding: 40px 0; }
+        .section-title {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 30px;
+            color: #222;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-body { padding: 15px; }
+        .card-body h3 { margin-bottom: 8px; color: #222; font-size: 18px; }
+        .card-body p { color: #666; font-size: 13px; line-height: 1.4; }
+
+        /* --- GALERİ / REFERANSLAR --- */
+        .gallery-section { padding: 40px 0; background-color: #fff; }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            padding: 0 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            height: 220px;
+        }
+
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.1));
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 15px;
+        }
+
+        .gallery-overlay h3 { font-size: 18px; margin-bottom: 3px; color: #f39c12; }
+        .gallery-overlay p { font-size: 13px; color: #ddd; }
+
+        /* --- SABİT ALT BUTONLAR --- */
+        .floating-cta {
+            position: fixed;
+            bottom: 0; left: 0;
+            width: 100%;
+            display: flex;
+            background: #fff;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.15);
+            z-index: 999;
+        }
+
+        .float-btn {
+            flex: 1;
+            text-align: center;
+            padding: 14px 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 14
