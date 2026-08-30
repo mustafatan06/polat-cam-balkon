@@ -57,9 +57,9 @@
             box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
         }
 
-        /* SAĞDAN SOLA UZUNLAMASINA TAM GENİŞLİKTE CANLI CAM BALKON BANNERI */
+        /* SAĞDAN SOLA UZUNLAMASINA TAM EKRAN CANLI DÖNGÜLÜ BANNER */
         .hero-banner {
-            background: linear-gradient(135deg, #0f172a, #1e293b);
+            background: #0f172a;
             padding: 30px 0 20px 0;
             text-align: center;
             color: #fff;
@@ -79,16 +79,15 @@
             margin-bottom: 20px;
         }
 
-        /* Sınırları kaldıran, sağdan sola tam uzanan çerçeve */
         .live-balcony-frame {
             position: relative;
             width: 100%;
             height: 420px;
-            background: url('images/cambalkon.jpg') center/cover no-repeat;
+            background: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
             display: flex;
-            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
-            border-top: 2px solid rgba(255, 255, 255, 0.15);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.6);
+            border-top: 2px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         }
 
         @media(max-width: 768px) {
@@ -100,13 +99,12 @@
             }
         }
 
-        /* Cam Paneller (Sağdan Sola Tam Kaplama) */
         .live-pane {
             flex: 1;
             height: 100%;
-            background: rgba(255, 255, 255, 0.18);
-            backdrop-filter: blur(2px);
-            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(1px);
+            border-right: 2px solid rgba(255, 255, 255, 0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -115,7 +113,7 @@
         }
 
         .live-pane span {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(15, 23, 42, 0.9);
             color: #f59e0b;
             font-size: 12px;
             font-weight: bold;
@@ -124,18 +122,17 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* Döngü Açık Durumu (Otomatik Açılıp Kapanma) */
         .live-balcony-frame.loop-open .pane-1 {
             transform: translateX(92%) scaleX(0.08);
-            opacity: 0.1;
+            opacity: 0.05;
         }
         .live-balcony-frame.loop-open .pane-2 {
             transform: translateX(62%) scaleX(0.25);
-            opacity: 0.3;
+            opacity: 0.2;
         }
         .live-balcony-frame.loop-open .pane-3 {
             transform: translateX(32%) scaleX(0.55);
-            opacity: 0.6;
+            opacity: 0.4;
         }
 
         .banner-badge {
@@ -151,7 +148,6 @@
             font-weight: 600;
             border: 1px solid rgba(245, 158, 11, 0.3);
         }
-
 
         /* Hizmetler Bölümü */
         .services {
@@ -353,7 +349,6 @@
 </head>
 <body>
 
-    <!-- Üst Header -->
     <header class="header">
         <div class="logo">Polat <span>Cam Balkon</span></div>
         <a href="tel:05455275226" class="phone-btn">
@@ -361,7 +356,6 @@
         </a>
     </header>
 
-    <!-- SAĞDAN SOLA UZUNLAMASINA TAM EKRAN DÖNGÜLÜ CAM BALKON BANNERİ -->
     <section class="hero-banner">
         <h1>Dört Mevsim Konfor ve Estetik</h1>
         <p>Isı yalıtımlı modern cam balkon sistemlerimiz ile mekanlarınıza değer katıyoruz.</p>
@@ -378,7 +372,6 @@
         </div>
     </section>
 
-    <!-- Hizmetlerimiz Bölümü -->
     <section class="services" id="hizmetler">
         <div class="section-title">
             <h2>Hizmetlerimiz & Detaylı Bilgiler</h2>
@@ -387,9 +380,8 @@
 
         <div class="service-grid">
             
-            <!-- Hizmet 1 -->
             <div class="service-card" onclick="toggleArticle('art-cambalkon')">
-                <img src="images/cambalkon.jpg" alt="Cam Balkon Sistemleri">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Cam Balkon Sistemleri">
                 <div class="card-content">
                     <h3>Cam Balkon Sistemleri</h3>
                     <p>Isı yalıtımlı, katlanır ve sürgülü cam balkon sistemleriyle dört mevsim ferahlık.</p>
@@ -405,9 +397,8 @@
                 </div>
             </div>
 
-            <!-- Hizmet 2 -->
             <div class="service-card" onclick="toggleArticle('art-teras')">
-                <img src="images/teraskapama.jpg" alt="Teras Kapama">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Teras Kapama">
                 <div class="card-content">
                     <h3>Teras Kapama</h3>
                     <p>Teraslarınızı dış etkenlerden koruyan estetik çatı ve cam kapama sistemleri.</p>
@@ -419,12 +410,11 @@
                 </div>
             </div>
 
-            <!-- Hizmet 3 -->
             <div class="service-card" onclick="toggleArticle('art-pimapen')">
-                <img src="images/pimapen.jpg" alt="Pimapen">
+                <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Pimapen">
                 <div class="card-content">
                     <h3>Pimapen</h3>
-                    <p>Yüksek ses ve ısı yalıtımı sağlayan dayanıklı PVC pencere ve kapı çözümleri.</p>
+                    <p>Yüksek ses and ısı yalıtımı sağlayan dayanıklı PVC pencere ve kapı çözümleri.</p>
                     <span class="detail-link">Makaleyi Oku / Kapat <i class="fas fa-chevron-down"></i></span>
                 </div>
                 <div class="article-box" id="art-pimapen">
@@ -433,9 +423,8 @@
                 </div>
             </div>
 
-            <!-- Hizmet 4 -->
             <div class="service-card" onclick="toggleArticle('art-dusakabin')">
-                <img src="images/dusakabin.jpg" alt="Duşakabin Sistemleri">
+                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=600&q=80" alt="Duşakabin Sistemleri">
                 <div class="card-content">
                     <h3>Duşakabin Sistemleri</h3>
                     <p>Banyolarınıza şıklık katan modern temperli cam duşakabin modelleri.</p>
@@ -447,9 +436,8 @@
                 </div>
             </div>
 
-            <!-- Hizmet 5 -->
             <div class="service-card" onclick="toggleArticle('art-tadilat')">
-                <img src="images/tadilat.jpg" alt="Tamirat Ve Tadilat">
+                <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Tamirat Ve Tadilat">
                 <div class="card-content">
                     <h3>Tamirat Ve Tadilat</h3>
                     <p>Ev ve iş yerleriniz için anahtar teslim kapsamlı dekorasyon ve yenileme.</p>
@@ -464,7 +452,6 @@
         </div>
     </section>
 
-    <!-- Müşteri Yorumları -->
     <section class="testimonials">
         <div class="section-title">
             <h2>Müşteri Yorumları</h2>
@@ -489,7 +476,6 @@
         </div>
     </section>
 
-    <!-- Sabit Alt Butonlar -->
     <div class="bottom-actions">
         <a href="tel:05455275226" class="action-btn call-action">
             <i class="fas fa-phone"></i> Hemen Ara
@@ -499,9 +485,7 @@
         </a>
     </div>
 
-    <!-- Scriptler -->
     <script>
-        // Sürekli Döngüde Otomatik Açılıp Kapanan Tam Genişlik Cam Balkon
         setInterval(function() {
             const balcony = document.getElementById('liveBalcony');
             balcony.classList.toggle('loop-open');
