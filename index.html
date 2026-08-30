@@ -3,491 +3,519 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Polat Cam Balkon & Yapı Sistemleri</title>
+    <title>Polat Cam Balkon | Modern Yapı ve Balkon Çözümleri</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #f4f7f6;
-            color: #333;
+            background-color: #f8fafc;
+            color: #334155;
+            padding-bottom: 90px;
             overflow-x: hidden;
         }
 
-        .container {
-            width: 90%;
+        /* Üst Header */
+        .header {
+            background-color: #0f172a;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #f59e0b;
+        }
+
+        .phone-btn {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #fff;
+            padding: 10px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+        }
+
+        /* SAĞDAN SOLA UZUNLAMASINA TAM GENİŞLİKTE CANLI CAM BALKON BANNERI */
+        .hero-banner {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            padding: 30px 0 20px 0;
+            text-align: center;
+            color: #fff;
+            border-bottom: 4px solid #f59e0b;
+            width: 100%;
+        }
+
+        .hero-banner h1 {
+            font-size: 28px;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .hero-banner p {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 20px;
+        }
+
+        /* Sınırları kaldıran, sağdan sola tam uzanan çerçeve */
+        .live-balcony-frame {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            background: url('images/cambalkon.jpg') center/cover no-repeat;
+            display: flex;
+            box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+            border-top: 2px solid rgba(255, 255, 255, 0.15);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+        }
+
+        @media(max-width: 768px) {
+            .live-balcony-frame {
+                height: 260px;
+            }
+            .hero-banner h1 {
+                font-size: 22px;
+            }
+        }
+
+        /* Cam Paneller (Sağdan Sola Tam Kaplama) */
+        .live-pane {
+            flex: 1;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(2px);
+            border-right: 2px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 1.2s;
+            transform-origin: left center;
+        }
+
+        .live-pane span {
+            background: rgba(15, 23, 42, 0.85);
+            color: #f59e0b;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 6px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Döngü Açık Durumu (Otomatik Açılıp Kapanma) */
+        .live-balcony-frame.loop-open .pane-1 {
+            transform: translateX(92%) scaleX(0.08);
+            opacity: 0.1;
+        }
+        .live-balcony-frame.loop-open .pane-2 {
+            transform: translateX(62%) scaleX(0.25);
+            opacity: 0.3;
+        }
+        .live-balcony-frame.loop-open .pane-3 {
+            transform: translateX(32%) scaleX(0.55);
+            opacity: 0.6;
+        }
+
+        .banner-badge {
+            margin-top: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #f59e0b;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+
+        /* Hizmetler Bölümü */
+        .services {
+            padding: 40px 15px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* --- CAM BALKON AÇILIŞ ANİMASYONU --- */
-        #balcony-intro {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url('images/cambalkon.jpg') no-repeat center center/cover;
-            z-index: 99999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.6s ease, visibility 0.6s ease;
-        }
-
-        .intro-content {
-            position: relative;
-            text-align: center;
-            color: white;
-            z-index: 100000;
-            background: rgba(15, 23, 42, 0.85);
-            padding: 35px 25px;
-            border-radius: 16px;
-            backdrop-filter: blur(8px);
-            width: 90%;
-            max-width: 480px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .intro-content h2 {
-            font-size: 26px;
-            margin-bottom: 10px;
-            color: #f8fafc;
-        }
-
-        .intro-content p {
-            font-size: 14px;
-            margin-bottom: 25px;
-            color: #94a3b8;
-        }
-
-        #openBalconyBtn {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            border: none;
-            padding: 14px 24px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
-        }
-
-        #openBalconyBtn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(245, 158, 11, 0.6);
-        }
-
-        .glass-panels {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            pointer-events: none;
-        }
-
-        .glass-panel {
-            flex: 1;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(8px);
-            border-right: 2px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            writing-mode: vertical-rl;
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 3px;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .slide-out .panel-1 { transform: translateX(-100%); }
-        .slide-out .panel-2 { transform: translateX(-100%); transition-delay: 0.1s; }
-        .slide-out .panel-3 { transform: translateX(-100%); transition-delay: 0.2s; }
-        .slide-out .panel-4 { transform: translateX(-100%); transition-delay: 0.3s; }
-
-        /* --- HEADER --- */
-        .header {
-            background: #0f172a;
-            color: #fff;
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo h1 { font-size: 22px; font-weight: 700; }
-        .logo span { color: #f59e0b; }
-
-        .btn-call {
-            background: #f59e0b;
-            color: #fff;
-            padding: 8px 16px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
-            transition: background 0.2s;
-        }
-
-        .btn-call:hover { background: #d97706; }
-
-        /* --- HERO --- */
-        .hero {
-            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('images/cambalkon.jpg') no-repeat center center/cover;
-            color: white;
-            padding: 90px 15px;
-            text-align: center;
-        }
-
-        .hero-text h2 { font-size: 34px; margin-bottom: 15px; font-weight: 700; }
-        .hero-text p { font-size: 17px; margin-bottom: 30px; color: #cbd5e1; max-width: 700px; margin-left: auto; margin-right: auto; }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            color: white;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 15px;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn:hover { transform: translateY(-2px); }
-        .btn.primary { background-color: #2563eb; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4); }
-        .btn.whatsapp { background-color: #16a34a; box-shadow: 0 4px 12px rgba(22, 163, 74, 0.4); }
-
-        /* --- HİZMETLERİMİZ --- */
-        .services { padding: 60px 0; }
         .section-title {
             text-align: center;
-            font-size: 30px;
-            margin-bottom: 10px;
-            color: #0f172a;
-            font-weight: 700;
+            margin-bottom: 30px;
         }
 
-        .section-subtitle {
-            text-align: center;
+        .section-title h2 {
+            font-size: 28px;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .section-title p {
             color: #64748b;
-            margin-bottom: 40px;
-            font-size: 15px;
+            font-size: 14px;
         }
 
-        .services-grid {
+        .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media(min-width: 768px) {
+            .service-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media(min-width: 1024px) {
+            .service-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .service-card {
             background: #fff;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            cursor: pointer;
+            transition: all 0.3s ease;
             border: 1px solid #e2e8f0;
         }
 
         .service-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+            border-color: #f59e0b;
         }
 
         .service-card img {
             width: 100%;
-            height: 200px;
+            height: 190px;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            display: block;
         }
 
-        .service-card:hover img {
-            transform: scale(1.05);
+        .card-content {
+            padding: 20px;
         }
 
-        .card-body { padding: 20px; }
-        .card-body h3 { margin-bottom: 10px; color: #0f172a; font-size: 20px; font-weight: 600; }
-        .card-body p { color: #475569; font-size: 14px; line-height: 1.6; }
+        .card-content h3 {
+            font-size: 18px;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
 
-        /* --- GALERİ / REFERANSLAR --- */
-        .gallery-section { padding: 60px 0; background-color: #ffffff; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        .card-content p {
+            color: #64748b;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
 
-        .gallery-grid {
+        .detail-link {
+            color: #2563eb;
+            font-weight: 600;
+            font-size: 13px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .article-box {
+            display: none;
+            background: #f1f5f9;
+            padding: 18px;
+            border-top: 1px solid #e2e8f0;
+            font-size: 13px;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        .article-box ul {
+            margin: 10px 0 0 18px;
+        }
+
+        .article-box li {
+            margin-bottom: 5px;
+        }
+
+        /* Müşteri Yorumları */
+        .testimonials {
+            background: #0f172a;
+            color: #fff;
+            padding: 50px 15px;
+            margin-top: 30px;
+        }
+
+        .testimonials .section-title h2 {
+            color: #fff;
+        }
+        .testimonials .section-title p {
+            color: #94a3b8;
+        }
+
+        .testimonial-grid {
+            max-width: 1100px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: 1fr;
             gap: 20px;
         }
 
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
+        @media(min-width: 768px) {
+            .testimonial-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            background: #1e293b;
+            padding: 22px;
             border-radius: 12px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
-            height: 260px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            border: 1px solid #334155;
         }
 
-        .gallery-item img { 
-            width: 100%; 
-            height: 100%; 
-            object-fit: cover; 
-            transition: transform 0.5s ease;
+        .testimonial-card .stars {
+            color: #f59e0b;
+            font-size: 14px;
+            margin-bottom: 10px;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.1);
+        .testimonial-card p {
+            font-size: 13px;
+            color: #cbd5e1;
+            font-style: italic;
+            margin-bottom: 15px;
+            line-height: 1.5;
         }
 
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 100%;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.1));
-            color: white;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            opacity: 0.9;
-            transition: opacity 0.3s;
+        .testimonial-card h4 {
+            font-size: 14px;
+            color: #f59e0b;
+            text-align: right;
         }
 
-        .gallery-overlay h3 { font-size: 20px; margin-bottom: 4px; color: #f59e0b; font-weight: 600; }
-        .gallery-overlay p { font-size: 14px; color: #cbd5e1; }
-
-        /* --- SABİT ALT BUTONLAR --- */
-        .floating-cta {
+        /* Sabit Alt Butonlar */
+        .bottom-actions {
             position: fixed;
-            bottom: 0; left: 0;
+            bottom: 0;
+            left: 0;
             width: 100%;
             display: flex;
-            background: #0f172a;
-            box-shadow: 0 -4px 10px rgba(0,0,0,0.2);
-            z-index: 999;
+            z-index: 1000;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
         }
 
-        .float-btn {
+        .action-btn {
             flex: 1;
+            padding: 15px;
             text-align: center;
-            padding: 16px 10px;
             text-decoration: none;
-            color: white;
-            font-weight: 600;
+            color: #fff;
+            font-weight: bold;
+            font-size: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            font-size: 15px;
-            transition: background 0.2s;
         }
 
-        .float-btn.call { background-color: #2563eb; }
-        .float-btn.call:hover { background-color: #1d4ed8; }
-        .float-btn.wa { background-color: #16a34a; }
-        .float-btn.wa:hover { background-color: #15803d; }
+        .call-action {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
 
-        footer {
-            background: #090d16;
-            color: #94a3b8;
-            text-align: center;
-            padding: 25px 0;
-            margin-bottom: 55px;
-            font-size: 14px;
+        .wp-action {
+            background: linear-gradient(135deg, #16a34a, #15803d);
         }
     </style>
 </head>
 <body>
 
-    <div id="balcony-intro">
-        <div class="intro-content">
-            <h2>Polat Cam Balkon'a Hoş Geldiniz</h2>
-            <p>Konforu ve ferahlığı içeri almak için camları kaydırın.</p>
-            <button id="openBalconyBtn">
-                <i class="fa-solid fa-arrows-left-right"></i> Camları Aç / Siteye Gir
-            </button>
-        </div>
-
-        <div class="glass-panels">
-            <div class="glass-panel panel-1"><span>Polat Cam Balkon</span></div>
-            <div class="glass-panel panel-2"><span>Kaliteli İşçilik</span></div>
-            <div class="glass-panel panel-3"><span>Dört Mevsim Konfor</span></div>
-            <div class="glass-panel panel-4"><span>Hemen Tıklayın</span></div>
-        </div>
-    </div>
-
+    <!-- Üst Header -->
     <header class="header">
-        <div class="container header-content">
-            <div class="logo">
-                <h1>Polat <span>Cam Balkon</span></h1>
-            </div>
-            <div class="header-contact">
-                <a href="tel:05455275226" class="btn-call"><i class="fa-solid fa-phone"></i> 0545 527 5226</a>
-            </div>
-        </div>
+        <div class="logo">Polat <span>Cam Balkon</span></div>
+        <a href="tel:05455275226" class="phone-btn">
+            <i class="fas fa-phone-alt"></i> 0545 527 5226
+        </a>
     </header>
 
-    <section class="hero">
-        <div class="container hero-text">
-            <h2>Yaşam Alanlarınıza Değer Katıyoruz</h2>
-            <p>Cam balkon, teras kapama, duşakabin ve tadilat çözümlerimizde profesyonel ustalık ve birinci sınıf malzeme garantisi.</p>
-            <div class="hero-buttons">
-                <a href="tel:05455275226" class="btn primary"><i class="fa-solid fa-phone-volume"></i> Hemen Ara</a>
-                <a href="https://wa.me/905455275226?text=Merhaba,%20hizmetleriniz%20hakkında%20bilgi%20ve%20teklif%20almak%20istiyorum." target="_blank" class="btn whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Teklif Al</a>
-            </div>
+    <!-- SAĞDAN SOLA UZUNLAMASINA TAM EKRAN DÖNGÜLÜ CAM BALKON BANNERİ -->
+    <section class="hero-banner">
+        <h1>Dört Mevsim Konfor ve Estetik</h1>
+        <p>Isı yalıtımlı modern cam balkon sistemlerimiz ile mekanlarınıza değer katıyoruz.</p>
+        
+        <div class="live-balcony-frame" id="liveBalcony">
+            <div class="live-pane pane-1"><span>Polat Cam Balkon</span></div>
+            <div class="live-pane pane-2"><span>Sistemleri</span></div>
+            <div class="live-pane pane-3"><span>Isı Yalıtımlı</span></div>
+            <div class="live-pane pane-4"><span>Katlanır Cam</span></div>
+        </div>
+        
+        <div class="banner-badge">
+            <i class="fas fa-sync-alt fa-spin"></i> Otomatik Sürgülü Sistem Simülasyonu
         </div>
     </section>
 
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title">Hizmetlerimiz</h2>
-            <p class="section-subtitle">Eviniz ve iş yeriniz için sunduğumuz modern yapı çözümleri</p>
+    <!-- Hizmetlerimiz Bölümü -->
+    <section class="services" id="hizmetler">
+        <div class="section-title">
+            <h2>Hizmetlerimiz & Detaylı Bilgiler</h2>
+            <p>Hizmetlerimizin üzerine tıklayarak kapsamlı makale ve detaylarını inceleyebilirsiniz</p>
+        </div>
+
+        <div class="service-grid">
             
-            <div class="services-grid">
-                
-                <div class="service-card">
-                    <img src="images/cambalkon.jpg" alt="Cam Balkon Sistemleri">
-                    <div class="card-body">
-                        <h3>Cam Balkon Sistemleri</h3>
-                        <p>Katlanır ve sürgülü ısı yalıtımlı cam balkon sistemleri ile dört mevsim konfor.</p>
-                    </div>
+            <!-- Hizmet 1 -->
+            <div class="service-card" onclick="toggleArticle('art-cambalkon')">
+                <img src="images/cambalkon.jpg" alt="Cam Balkon Sistemleri">
+                <div class="card-content">
+                    <h3>Cam Balkon Sistemleri</h3>
+                    <p>Isı yalıtımlı, katlanır ve sürgülü cam balkon sistemleriyle dört mevsim ferahlık.</p>
+                    <span class="detail-link">Makaleyi Oku / Kapat <i class="fas fa-chevron-down"></i></span>
                 </div>
-
-                <div class="service-card">
-                    <img src="images/teraskapama.jpg" alt="Teras Kapama">
-                    <div class="card-body">
-                        <h3>Teras Kapama</h3>
-                        <p>Teraslarınızı dış etkenlerden koruyan estetik çatı ve cam kapama çözümleri.</p>
-                    </div>
+                <div class="article-box" id="art-cambalkon">
+                    <p><strong>Cam Balkon Sistemleri ve Avantajları:</strong> Evinizdeki yaşam alanlarını genişletmek ve dış hava koşullarından etkilenmeden dört mevsim balkon keyfi sürmenizi sağlayan en modern çözümdür. Katlanır ve sürgülü mekanizma seçenekleri sayesinde temizliği son derece kolaydır.</p>
+                    <ul>
+                        <li>Rüzgar, yağmur, kar ve toz gibi dış etkenleri %90'a varan oranda engeller.</li>
+                        <li>Isı yalıtımı sayesinde evinizin enerji tasarrufuna katkı sağlar.</li>
+                        <li>Estetik yapısıyla binanızın dış görünümünü zenginleştirir ve mülk değerini artırır.</li>
+                    </ul>
                 </div>
+            </div>
 
-                <div class="service-card">
-                    <img src="images/pimapen.jpg" alt="Pimapen PVC Doğrama">
-                    <div class="card-body">
-                        <h3>Pimapen (PVC Doğrama)</h3>
-                        <p>Yüksek ses ve ısı yalıtımlı, dayanıklı PVC pencere ve kapı sistemleri.</p>
-                    </div>
+            <!-- Hizmet 2 -->
+            <div class="service-card" onclick="toggleArticle('art-teras')">
+                <img src="images/teraskapama.jpg" alt="Teras Kapama">
+                <div class="card-content">
+                    <h3>Teras Kapama</h3>
+                    <p>Teraslarınızı dış etkenlerden koruyan estetik çatı ve cam kapama sistemleri.</p>
+                    <span class="detail-link">Makaleyi Oku / Kapat <i class="fas fa-chevron-down"></i></span>
                 </div>
-
-                <div class="service-card">
-                    <img src="images/dusakabin.jpg" alt="Duşakabin Sistemleri">
-                    <div class="card-body">
-                        <h3>Duşakabin Sistemleri</h3>
-                        <p>Banyonuza özel ölçü temperli cam ve şık profilli duşakabin modelleri.</p>
-                    </div>
+                <div class="article-box" id="art-teras">
+                    <p><strong>Teras Kapama ve Çatı Çözümleri:</strong> Açık teraslarınızı yılın her günü konforlu bir oda veya dinlenme alanına dönüştürmek istiyorsanız teras kapama sistemlerimiz tam size göre. Ahşap veya çelik konstrüksiyon destekli çatı ve cam cephe uygulamalarıyla teraslarınız güvenle kapatılır.</p>
+                    <p>Yazın kavurucu sıcaklarından, kışın ise sert yağışlardan korunan teraslarınız evinizin en gözde odası haline gelir.</p>
                 </div>
+            </div>
 
-                <div class="service-card">
-                    <img src="images/tadilat.jpg" alt="Tamirat ve Tadilat">
-                    <div class="card-body">
-                        <h3>Tamirat ve Tadilat</h3>
-                        <p>Cam balkon tekerlek değişimi, fitil yenileme ve genel ev/ofis tadilat işleri.</p>
-                    </div>
+            <!-- Hizmet 3 -->
+            <div class="service-card" onclick="toggleArticle('art-pimapen')">
+                <img src="images/pimapen.jpg" alt="Pimapen">
+                <div class="card-content">
+                    <h3>Pimapen</h3>
+                    <p>Yüksek ses ve ısı yalıtımı sağlayan dayanıklı PVC pencere ve kapı çözümleri.</p>
+                    <span class="detail-link">Makaleyi Oku / Kapat <i class="fas fa-chevron-down"></i></span>
                 </div>
+                <div class="article-box" id="art-pimapen">
+                    <p><strong>Pimapen ve PVC Doğrama Sistemleri:</strong> Ev içi ısı ve ses yalıtımının en kilit noktası kaliteli PVC doğrama sistemleridir. Pimapen modellerimiz, yüksek yalıtım teknolojisi sayesinde faturalarınızda düşüş sağlarken dışarıdaki gürültüyü tamamen keser.</p>
+                    <p>Solma yapmayan, darbelere dayanıklı ve kilit mekanizmaları güçlendirilmiş yapısıyla yıllarca sorunsuz kullanım sunar.</p>
+                </div>
+            </div>
 
+            <!-- Hizmet 4 -->
+            <div class="service-card" onclick="toggleArticle('art-dusakabin')">
+                <img src="images/dusakabin.jpg" alt="Duşakabin Sistemleri">
+                <div class="card-content">
+                    <h3>Duşakabin Sistemleri</h3>
+                    <p>Banyolarınıza şıklık katan modern temperli cam duşakabin modelleri.</p>
+                    <span class="detail-link">Makaleyi Oku / Kapat <i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="article-box" id="art-dusakabin">
+                    <p><strong>Modern Duşakabin Sistemleri:</strong> Banyonuzun boyutuna ve dekorasyon tarzınıza özel olarak tasarlanan temperli cam duşakabin çözümleri sunuyoruz. Su sızdırmazlık garantili fitiller ve paslanmaz profillerle banyolarınızda hem şıklık hem hijyen sağlanır.</p>
+                    <p>Özel ölçü üretimiyle banyonuzdaki en dar alanları bile en verimli şekilde değerlendiriyoruz.</p>
+                </div>
+            </div>
+
+            <!-- Hizmet 5 -->
+            <div class="service-card" onclick="toggleArticle('art-tadilat')">
+                <img src="images/tadilat.jpg" alt="Tamirat Ve Tadilat">
+                <div class="card-content">
+                    <h3>Tamirat Ve Tadilat</h3>
+                    <p>Ev ve iş yerleriniz için anahtar teslim kapsamlı dekorasyon ve yenileme.</p>
+                    <span class="detail-link">Makaleyi Oku / Kapat <i class="fas fa-chevron-down"></i></span>
+                </div>
+                <div class="article-box" id="art-tadilat">
+                    <p><strong>Anahtar Teslim Tamirat ve Tadilat:</strong> Ev veya iş yerinizde yenilenmeye ihtiyaç duyan tüm alanlar için profesyonel anahtar teslim tadilat hizmeti veriyoruz. Boya badana, mutfak ve banyo yenileme ve genel tamirat işleriniz tek elden titizlikle yürütülür.</p>
+                    <p>Uzman ekibimizle planlanan sürede işler tamamlanır, size sadece tertemiz yeni yuvanızın tadını çıkarmak kalır.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Müşteri Yorumları -->
+    <section class="testimonials">
+        <div class="section-title">
+            <h2>Müşteri Yorumları</h2>
+            <p>Bizi tercih eden değerli müşterilerimizin memnuniyetleri</p>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Balkonumuz tamamen değişti, rüzgar ve soğuk derdi bitti. Ekip çok temiz ve titiz çalıştı, teşekkürler Polat Cam Balkon!"</p>
+                <h4>Ahmet Y.</h4>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Teras kapama ve pimapen işlerimizi kısa sürede ve tam söz verdikleri vakitte teslim ettiler. Güvenilir esnaf."</p>
+                <h4>Sibel K.</h4>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <p>"Duşakabin ve ev tadilatımız için aldığımız hizmetten çok memnun kaldık. Gözünüz kapalı güvenebilirsiniz."</p>
+                <h4>Murat D.</h4>
             </div>
         </div>
     </section>
 
-    <section id="gallery" class="gallery-section">
-        <div class="container">
-            <h2 class="section-title">Referanslar & Uygulama Görselleri</h2>
-            <p class="section-subtitle">Tamamladığımız projelerimizden seçkin kareler</p>
-            
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/cambalkon.jpg" alt="Proje">
-                    <div class="gallery-overlay">
-                        <h3>Katlanır Cam Balkon</h3>
-                        <p>Lüks Villa Projesi</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/teraskapama.jpg" alt="Proje">
-                    <div class="gallery-overlay">
-                        <h3>Teras Kapatma</h3>
-                        <p>Özel Çatı Tasarımı</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/dusakabin.jpg" alt="Proje">
-                    <div class="gallery-overlay">
-                        <h3>Modern Duşakabin</h3>
-                        <p>Banyo Tasarımı</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/pimapen.jpg" alt="Proje">
-                    <div class="gallery-overlay">
-                        <h3>PVC Doğrama</h3>
-                        <p>Isı Yalıtımlı Pencereler</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/tadilat.jpg" alt="Proje">
-                    <div class="gallery-overlay">
-                        <h3>Yapı ve Tadilat</h3>
-                        <p>Anahtar Teslim Yenileme</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="floating-cta">
-        <a href="tel:05455275226" class="float-btn call"><i class="fa-solid fa-phone"></i> Hemen Ara</a>
-        <a href="https://wa.me/905455275226?text=Merhaba,%20hizmetleriniz%20hakkında%20bilgi%20ve%20teklif%20almak%20istiyorum." target="_blank" class="float-btn wa"><i class="fa-brands fa-whatsapp"></i> WhatsApp Teklif Al</a>
+    <!-- Sabit Alt Butonlar -->
+    <div class="bottom-actions">
+        <a href="tel:05455275226" class="action-btn call-action">
+            <i class="fas fa-phone"></i> Hemen Ara
+        </a>
+        <a href="https://wa.me/905455275226?text=Merhaba,%20hizmetleriniz%20hakkında%20bilgi%20ve%20teklif%20almak%20istiyorum." class="action-btn wp-action" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp Teklif Al
+        </a>
     </div>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Polat Cam Balkon & Yapı Sistemleri. Tüm hakları saklıdır.</p>
-        </div>
-    </footer>
-
+    <!-- Scriptler -->
     <script>
-        const btn = document.getElementById('openBalconyBtn');
-        const intro = document.getElementById('balcony-intro');
+        // Sürekli Döngüde Otomatik Açılıp Kapanan Tam Genişlik Cam Balkon
+        setInterval(function() {
+            const balcony = document.getElementById('liveBalcony');
+            balcony.classList.toggle('loop-open');
+        }, 3500);
 
-        btn.addEventListener('click', function() {
-            intro.classList.add('slide-out');
-            setTimeout(function() {
-                intro.style.display = 'none';
-            }, 800);
-        });
+        function toggleArticle(id) {
+            const box = document.getElementById(id);
+            if(box.style.display === 'block') {
+                box.style.display = 'none';
+            } else {
+                document.querySelectorAll('.article-box').forEach(b => b.style.display = 'none');
+                box.style.display = 'block';
+            }
+        }
     </script>
 </body>
 </html>
